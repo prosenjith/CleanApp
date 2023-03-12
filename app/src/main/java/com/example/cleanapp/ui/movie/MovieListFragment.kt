@@ -4,23 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.cleanapp.R
+import com.example.cleanapp.base.BaseFragment
 import com.example.cleanapp.databinding.FragmentMovieListBinding
-import com.example.cleanapp.utils.FragmentViewBindingDelegate
 
-class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
+class MovieListFragment : BaseFragment<FragmentMovieListBinding>() {
 
-    private val binding by FragmentViewBindingDelegate(this, FragmentMovieListBinding::inflate)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return binding.root
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMovieListBinding
+        get() = FragmentMovieListBinding::inflate
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
